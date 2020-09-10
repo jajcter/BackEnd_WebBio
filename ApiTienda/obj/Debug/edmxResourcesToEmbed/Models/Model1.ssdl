@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ModelTienda.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Articulo">
+    <Key>
+      <PropertyRef Name="idArticulo" />
+    </Key>
+    <Property Name="idArticulo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="100" />
+    <Property Name="precio" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="categoria" Type="varchar" MaxLength="25" />
+    <Property Name="detalle" Type="varchar(max)" />
+    <Property Name="estado" Type="varchar" MaxLength="12" />
+    <Property Name="idUsuarioDueño" Type="int" />
+  </EntityType>
+  <EntityType Name="Imagen">
+    <Key>
+      <PropertyRef Name="idImagen" />
+    </Key>
+    <Property Name="idImagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="imagenBin" Type="varbinary(max)" />
+    <Property Name="idArticulo" Type="int" />
+  </EntityType>
+  <EntityType Name="Negocio">
+    <Key>
+      <PropertyRef Name="idNegocio" />
+    </Key>
+    <Property Name="idNegocio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cantidad" Type="int" />
+    <Property Name="precio" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="subtotal" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="idAriculo" Type="int" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="idUsuario" />
+    </Key>
+    <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombres" Type="varchar" MaxLength="50" />
+    <Property Name="apellidos" Type="varchar" MaxLength="50" />
+    <Property Name="direccion" Type="varchar" MaxLength="100" />
+    <Property Name="telefono" Type="nchar" MaxLength="16" />
+    <Property Name="email" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Venta">
+    <Key>
+      <PropertyRef Name="idVenta" />
+    </Key>
+    <Property Name="idVenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fechaVenta" Type="datetime" />
+    <Property Name="idUsuarioComprador" Type="int" />
+    <Property Name="idNegocio" Type="int" />
+    <Property Name="total" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <Association Name="FK_Articulo_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="Articulo" Type="Self.Articulo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="Articulo">
+        <PropertyRef Name="idUsuarioDueño" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Imagen_Articulo">
+    <End Role="Articulo" Type="Self.Articulo" Multiplicity="0..1" />
+    <End Role="Imagen" Type="Self.Imagen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Articulo">
+        <PropertyRef Name="idArticulo" />
+      </Principal>
+      <Dependent Role="Imagen">
+        <PropertyRef Name="idArticulo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Negocio_Articulo">
+    <End Role="Articulo" Type="Self.Articulo" Multiplicity="0..1" />
+    <End Role="Negocio" Type="Self.Negocio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Articulo">
+        <PropertyRef Name="idArticulo" />
+      </Principal>
+      <Dependent Role="Negocio">
+        <PropertyRef Name="idAriculo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Venta_Negocio">
+    <End Role="Negocio" Type="Self.Negocio" Multiplicity="0..1" />
+    <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Negocio">
+        <PropertyRef Name="idNegocio" />
+      </Principal>
+      <Dependent Role="Venta">
+        <PropertyRef Name="idNegocio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Venta_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="Venta">
+        <PropertyRef Name="idUsuarioComprador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelTiendaStoreContainer">
+    <EntitySet Name="Articulo" EntityType="Self.Articulo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Imagen" EntityType="Self.Imagen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Negocio" EntityType="Self.Negocio" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Venta" EntityType="Self.Venta" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Articulo_Usuario" Association="Self.FK_Articulo_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Articulo" EntitySet="Articulo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Imagen_Articulo" Association="Self.FK_Imagen_Articulo">
+      <End Role="Articulo" EntitySet="Articulo" />
+      <End Role="Imagen" EntitySet="Imagen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Negocio_Articulo" Association="Self.FK_Negocio_Articulo">
+      <End Role="Articulo" EntitySet="Articulo" />
+      <End Role="Negocio" EntitySet="Negocio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Venta_Negocio" Association="Self.FK_Venta_Negocio">
+      <End Role="Negocio" EntitySet="Negocio" />
+      <End Role="Venta" EntitySet="Venta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Venta_Usuario" Association="Self.FK_Venta_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Venta" EntitySet="Venta" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

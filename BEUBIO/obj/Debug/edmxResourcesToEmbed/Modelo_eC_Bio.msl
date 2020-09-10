@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Modelo_BioStoreContainer" CdmEntityContainer="Entities_Bio">
+    <EntitySetMapping Name="Articuloes">
+      <EntityTypeMapping TypeName="Modelo_Bio.Articulo">
+        <MappingFragment StoreEntitySet="Articulo">
+          <ScalarProperty Name="imagen" ColumnName="imagen" />
+          <ScalarProperty Name="fecha_ingreso" ColumnName="fecha_ingreso" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="detalle" ColumnName="detalle" />
+          <ScalarProperty Name="categoria" ColumnName="categoria" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="idArticulo" ColumnName="idArticulo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Negocios">
+      <EntityTypeMapping TypeName="Modelo_Bio.Negocio">
+        <MappingFragment StoreEntitySet="Negocio">
+          <ScalarProperty Name="idAriculo" ColumnName="idAriculo" />
+          <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="idNegocio" ColumnName="idNegocio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="Modelo_Bio.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="token_temp" ColumnName="token_temp" />
+          <ScalarProperty Name="vistamaps" ColumnName="vistamaps" />
+          <ScalarProperty Name="ubicacionmaps" ColumnName="ubicacionmaps" />
+          <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+          <ScalarProperty Name="nombres" ColumnName="nombres" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ventas">
+      <EntityTypeMapping TypeName="Modelo_Bio.Venta">
+        <MappingFragment StoreEntitySet="Venta">
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="idNegocio" ColumnName="idNegocio" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="fechaVenta" ColumnName="fechaVenta" />
+          <ScalarProperty Name="idVenta" ColumnName="idVenta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

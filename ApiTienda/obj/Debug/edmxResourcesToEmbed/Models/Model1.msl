@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelTiendaStoreContainer" CdmEntityContainer="EntitiesTienda">
+    <EntitySetMapping Name="Articuloes">
+      <EntityTypeMapping TypeName="ModelTienda.Articulo">
+        <MappingFragment StoreEntitySet="Articulo">
+          <ScalarProperty Name="idArticulo" ColumnName="idArticulo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="categoria" ColumnName="categoria" />
+          <ScalarProperty Name="detalle" ColumnName="detalle" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="idUsuarioDueño" ColumnName="idUsuarioDueño" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Imagens">
+      <EntityTypeMapping TypeName="ModelTienda.Imagen">
+        <MappingFragment StoreEntitySet="Imagen">
+          <ScalarProperty Name="idImagen" ColumnName="idImagen" />
+          <ScalarProperty Name="imagenBin" ColumnName="imagenBin" />
+          <ScalarProperty Name="idArticulo" ColumnName="idArticulo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Negocios">
+      <EntityTypeMapping TypeName="ModelTienda.Negocio">
+        <MappingFragment StoreEntitySet="Negocio">
+          <ScalarProperty Name="idNegocio" ColumnName="idNegocio" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+          <ScalarProperty Name="idAriculo" ColumnName="idAriculo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="ModelTienda.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="nombres" ColumnName="nombres" />
+          <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ventas">
+      <EntityTypeMapping TypeName="ModelTienda.Venta">
+        <MappingFragment StoreEntitySet="Venta">
+          <ScalarProperty Name="idVenta" ColumnName="idVenta" />
+          <ScalarProperty Name="fechaVenta" ColumnName="fechaVenta" />
+          <ScalarProperty Name="idUsuarioComprador" ColumnName="idUsuarioComprador" />
+          <ScalarProperty Name="idNegocio" ColumnName="idNegocio" />
+          <ScalarProperty Name="total" ColumnName="total" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

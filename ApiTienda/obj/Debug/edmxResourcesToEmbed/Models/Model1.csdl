@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ModelTienda" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Articulo">
+    <Key>
+      <PropertyRef Name="idArticulo" />
+    </Key>
+    <Property Name="idArticulo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="precio" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="categoria" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="detalle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="idUsuarioDueño" Type="Int32" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_Articulo_Usuario" FromRole="Articulo" ToRole="Usuario" />
+    <NavigationProperty Name="Imagens" Relationship="Self.FK_Imagen_Articulo" FromRole="Articulo" ToRole="Imagen" />
+    <NavigationProperty Name="Negocios" Relationship="Self.FK_Negocio_Articulo" FromRole="Articulo" ToRole="Negocio" />
+  </EntityType>
+  <EntityType Name="Imagen">
+    <Key>
+      <PropertyRef Name="idImagen" />
+    </Key>
+    <Property Name="idImagen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="imagenBin" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="idArticulo" Type="Int32" />
+    <NavigationProperty Name="Articulo" Relationship="Self.FK_Imagen_Articulo" FromRole="Imagen" ToRole="Articulo" />
+  </EntityType>
+  <EntityType Name="Negocio">
+    <Key>
+      <PropertyRef Name="idNegocio" />
+    </Key>
+    <Property Name="idNegocio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cantidad" Type="Int32" />
+    <Property Name="precio" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="subtotal" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="idAriculo" Type="Int32" />
+    <NavigationProperty Name="Articulo" Relationship="Self.FK_Negocio_Articulo" FromRole="Negocio" ToRole="Articulo" />
+    <NavigationProperty Name="Ventas" Relationship="Self.FK_Venta_Negocio" FromRole="Negocio" ToRole="Venta" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="idUsuario" />
+    </Key>
+    <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="telefono" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Articuloes" Relationship="Self.FK_Articulo_Usuario" FromRole="Usuario" ToRole="Articulo" />
+    <NavigationProperty Name="Ventas" Relationship="Self.FK_Venta_Usuario" FromRole="Usuario" ToRole="Venta" />
+  </EntityType>
+  <EntityType Name="Venta">
+    <Key>
+      <PropertyRef Name="idVenta" />
+    </Key>
+    <Property Name="idVenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fechaVenta" Type="DateTime" Precision="3" />
+    <Property Name="idUsuarioComprador" Type="Int32" />
+    <Property Name="idNegocio" Type="Int32" />
+    <Property Name="total" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="Negocio" Relationship="Self.FK_Venta_Negocio" FromRole="Venta" ToRole="Negocio" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_Venta_Usuario" FromRole="Venta" ToRole="Usuario" />
+  </EntityType>
+  <Association Name="FK_Articulo_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="Articulo" Type="Self.Articulo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="Articulo">
+        <PropertyRef Name="idUsuarioDueño" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Imagen_Articulo">
+    <End Role="Articulo" Type="Self.Articulo" Multiplicity="0..1" />
+    <End Role="Imagen" Type="Self.Imagen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Articulo">
+        <PropertyRef Name="idArticulo" />
+      </Principal>
+      <Dependent Role="Imagen">
+        <PropertyRef Name="idArticulo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Negocio_Articulo">
+    <End Role="Articulo" Type="Self.Articulo" Multiplicity="0..1" />
+    <End Role="Negocio" Type="Self.Negocio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Articulo">
+        <PropertyRef Name="idArticulo" />
+      </Principal>
+      <Dependent Role="Negocio">
+        <PropertyRef Name="idAriculo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Venta_Negocio">
+    <End Role="Negocio" Type="Self.Negocio" Multiplicity="0..1" />
+    <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Negocio">
+        <PropertyRef Name="idNegocio" />
+      </Principal>
+      <Dependent Role="Venta">
+        <PropertyRef Name="idNegocio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Venta_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="Venta">
+        <PropertyRef Name="idUsuarioComprador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EntitiesTienda" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Articuloes" EntityType="Self.Articulo" />
+    <EntitySet Name="Imagens" EntityType="Self.Imagen" />
+    <EntitySet Name="Negocios" EntityType="Self.Negocio" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
+    <EntitySet Name="Ventas" EntityType="Self.Venta" />
+    <AssociationSet Name="FK_Articulo_Usuario" Association="Self.FK_Articulo_Usuario">
+      <End Role="Usuario" EntitySet="Usuarios" />
+      <End Role="Articulo" EntitySet="Articuloes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Imagen_Articulo" Association="Self.FK_Imagen_Articulo">
+      <End Role="Articulo" EntitySet="Articuloes" />
+      <End Role="Imagen" EntitySet="Imagens" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Negocio_Articulo" Association="Self.FK_Negocio_Articulo">
+      <End Role="Articulo" EntitySet="Articuloes" />
+      <End Role="Negocio" EntitySet="Negocios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Venta_Negocio" Association="Self.FK_Venta_Negocio">
+      <End Role="Negocio" EntitySet="Negocios" />
+      <End Role="Venta" EntitySet="Ventas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Venta_Usuario" Association="Self.FK_Venta_Usuario">
+      <End Role="Usuario" EntitySet="Usuarios" />
+      <End Role="Venta" EntitySet="Ventas" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

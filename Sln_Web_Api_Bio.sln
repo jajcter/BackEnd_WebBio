@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiTienda", "ApiTienda\ApiTienda.csproj", "{46CBC824-623B-40F4-B987-5F35D2D107A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BEUBIO", "BEUBIO\BEUBIO.csproj", "{6E63F997-805D-483E-947C-423FE8E2C768}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{46CBC824-623B-40F4-B987-5F35D2D107A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46CBC824-623B-40F4-B987-5F35D2D107A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46CBC824-623B-40F4-B987-5F35D2D107A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46CBC824-623B-40F4-B987-5F35D2D107A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E63F997-805D-483E-947C-423FE8E2C768}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E63F997-805D-483E-947C-423FE8E2C768}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E63F997-805D-483E-947C-423FE8E2C768}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E63F997-805D-483E-947C-423FE8E2C768}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {914503BD-24A0-4B0A-90AB-2D06925141A3}
+	EndGlobalSection
+EndGlobal
