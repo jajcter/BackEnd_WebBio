@@ -32,9 +32,10 @@ namespace BEUBIO
         public string contrasena { get; set; }
         public string ubicacionmaps { get; set; }
         public string vistamaps { get; set; }
+        public Nullable<decimal> saldoDisponible { get; set; }
         public string token_temp { get; set; }
     
-        [JsonIgnore]
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Articulo> Articuloes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

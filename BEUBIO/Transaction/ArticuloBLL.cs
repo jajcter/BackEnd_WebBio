@@ -52,12 +52,9 @@ namespace BEUBIO.Transaction
                         a.detalle = modelo.detalle;
                         a.estado = modelo.estado;
                         a.idUsuario = modelo.idUsuario;
-                        a.fecha_ingreso = modelo.fecha_ingreso;
+                        a.fecha  = modelo.fecha_ingreso;
 
                         a.imagen = modelo.imagen;
-
-
-
 
                         db.Articuloes.Add(a);
                         db.SaveChanges();
@@ -79,10 +76,15 @@ namespace BEUBIO.Transaction
             return db.Articuloes.Find(id);
         }
 
-        public static List<Articulo> Get_id(int? id)
+        public static List<Articulo> Get_id(int? id,string criterio)
         {
             Entities_Bio db = new Entities_Bio();
-            return db.Articuloes.Where(x => x.idUsuario == id).ToList();
+            return db.Articuloes.Where(x => x.idUsuario == id && x.categoria==criterio).ToList();
+        }
+        public static List<Articulo> Get_id_Login(int? id,string criterio)
+        {
+            Entities_Bio db = new Entities_Bio();
+            return db.Articuloes.Where(x => x.idUsuario != id && x.categoria==criterio).ToList();
         }
 
         public static bool Update(Articulo articulo)

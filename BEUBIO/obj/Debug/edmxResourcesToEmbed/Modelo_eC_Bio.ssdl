@@ -11,8 +11,10 @@
     <Property Name="detalle" Type="varchar(max)" />
     <Property Name="estado" Type="varchar" MaxLength="12" />
     <Property Name="idUsuario" Type="int" />
-    <Property Name="fecha_ingreso" Type="date" />
-    <Property Name="imagen" Type="image" />
+    <Property Name="fecha" Type="date" />
+    <Property Name="nombreImagen" Type="varchar(max)" />
+    <Property Name="imagen" Type="varbinary(max)" />
+    <Property Name="cantidad" Type="int" />
   </EntityType>
   <EntityType Name="Negocio">
     <Key>
@@ -22,7 +24,9 @@
     <Property Name="cantidad" Type="int" />
     <Property Name="precio" Type="decimal" Precision="18" Scale="2" />
     <Property Name="subtotal" Type="decimal" Precision="18" Scale="2" />
-    <Property Name="idAriculo" Type="int" />
+    <Property Name="idArticulo" Type="int" />
+    <Property Name="estado" Type="bit" />
+    <Property Name="idVenta" Type="int" />
   </EntityType>
   <EntityType Name="Usuario">
     <Key>
@@ -38,7 +42,8 @@
     <Property Name="contrasena" Type="varchar" MaxLength="50" />
     <Property Name="ubicacionmaps" Type="varchar(max)" />
     <Property Name="vistamaps" Type="varchar(max)" />
-    <Property Name="token_temp" Type="varchar" MaxLength="100" />
+    <Property Name="saldoDisponible" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="token_temp" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="Venta">
     <Key>
@@ -47,7 +52,6 @@
     <Property Name="idVenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="fechaVenta" Type="datetime" />
     <Property Name="idUsuario" Type="int" />
-    <Property Name="idNegocio" Type="int" />
     <Property Name="total" Type="decimal" Precision="18" Scale="2" />
   </EntityType>
   <Association Name="FK_Articulo_Usuario">
@@ -70,19 +74,19 @@
         <PropertyRef Name="idArticulo" />
       </Principal>
       <Dependent Role="Negocio">
-        <PropertyRef Name="idAriculo" />
+        <PropertyRef Name="idArticulo" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Venta_Negocio">
-    <End Role="Negocio" Type="Self.Negocio" Multiplicity="0..1" />
-    <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+  <Association Name="FK_Negocio_Venta">
+    <End Role="Venta" Type="Self.Venta" Multiplicity="0..1" />
+    <End Role="Negocio" Type="Self.Negocio" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Negocio">
-        <PropertyRef Name="idNegocio" />
+      <Principal Role="Venta">
+        <PropertyRef Name="idVenta" />
       </Principal>
-      <Dependent Role="Venta">
-        <PropertyRef Name="idNegocio" />
+      <Dependent Role="Negocio">
+        <PropertyRef Name="idVenta" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -111,9 +115,9 @@
       <End Role="Articulo" EntitySet="Articulo" />
       <End Role="Negocio" EntitySet="Negocio" />
     </AssociationSet>
-    <AssociationSet Name="FK_Venta_Negocio" Association="Self.FK_Venta_Negocio">
-      <End Role="Negocio" EntitySet="Negocio" />
+    <AssociationSet Name="FK_Negocio_Venta" Association="Self.FK_Negocio_Venta">
       <End Role="Venta" EntitySet="Venta" />
+      <End Role="Negocio" EntitySet="Negocio" />
     </AssociationSet>
     <AssociationSet Name="FK_Venta_Usuario" Association="Self.FK_Venta_Usuario">
       <End Role="Usuario" EntitySet="Usuario" />

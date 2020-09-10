@@ -27,7 +27,7 @@ namespace BEUBIO
     
         public virtual DbSet<Articulo> Articuloes { get; set; }
         public virtual DbSet<Negocio> Negocios { get; set; }
-        public virtual DbSet<Usuario> Usuarios { get; set; }
         public virtual DbSet<Venta> Ventas { get; set; }
+        public virtual DbSet<Usuario> Usuarios { get; set; }
     }
 }

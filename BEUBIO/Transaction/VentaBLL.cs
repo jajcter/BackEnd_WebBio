@@ -97,11 +97,11 @@ namespace BEUBIO.Transaction
 
         
 
-        public static List<Venta> GetList()
+        public static List<Venta> GetList(int id)
         {
             Entities_Bio db = new Entities_Bio();
            
-            return db.Ventas.ToList();
+            return db.Ventas.Where(x=>x.idUsuario==id).ToList();
 
         }
 

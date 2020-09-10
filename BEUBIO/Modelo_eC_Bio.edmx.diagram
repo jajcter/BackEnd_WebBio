@@ -5,13 +5,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="4af45705a07f4830a1e5307e6c07c3f6" Name="Diagram1">
-        <EntityTypeShape EntityType="Modelo_Bio.Articulo" Width="1.5" PointX="3" PointY="1.25" />
-        <EntityTypeShape EntityType="Modelo_Bio.Negocio" Width="1.5" PointX="5.25" PointY="1.625" />
-        <EntityTypeShape EntityType="Modelo_Bio.Usuario" Width="1.5" PointX="0.75" PointY="1" />
-        <EntityTypeShape EntityType="Modelo_Bio.Venta" Width="1.5" PointX="7.5" PointY="1.625" />
-        <AssociationConnector Association="Modelo_Bio.FK_Articulo_Usuario" />
+        <EntityTypeShape EntityType="Modelo_Bio.Articulo" Width="1.5" PointX="3" PointY="4.125" />
+        <EntityTypeShape EntityType="Modelo_Bio.Negocio" Width="1.5" PointX="5.25" PointY="3" />
+        <EntityTypeShape EntityType="Modelo_Bio.Venta" Width="1.5" PointX="3" PointY="1.125" />
         <AssociationConnector Association="Modelo_Bio.FK_Negocio_Articulo" />
-        <AssociationConnector Association="Modelo_Bio.FK_Venta_Negocio" />
+        <AssociationConnector Association="Modelo_Bio.FK_Negocio_Venta" />
+        <EntityTypeShape EntityType="Modelo_Bio.Usuario" Width="1.5" PointX="0.75" PointY="2.5" />
+        <AssociationConnector Association="Modelo_Bio.FK_Articulo_Usuario" />
         <AssociationConnector Association="Modelo_Bio.FK_Venta_Usuario" />
       </Diagram>
     </edmx:Diagrams>

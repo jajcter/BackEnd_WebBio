@@ -9,26 +9,20 @@
 
 namespace BEUBIO
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
     public partial class Negocio
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Negocio()
-        {
-            this.Ventas = new HashSet<Venta>();
-        }
-    
         public int idNegocio { get; set; }
         public Nullable<int> cantidad { get; set; }
         public Nullable<decimal> precio { get; set; }
         public Nullable<decimal> subtotal { get; set; }
-        public Nullable<int> idAriculo { get; set; }
-        [JsonIgnore]
+        public Nullable<int> idArticulo { get; set; }
+        public Nullable<bool> estado { get; set; }
+        public Nullable<int> idVenta { get; set; }
+    
         public virtual Articulo Articulo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Venta> Ventas { get; set; }
+        public virtual Venta Venta { get; set; }
     }
 }

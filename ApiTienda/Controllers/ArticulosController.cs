@@ -50,11 +50,27 @@ namespace ApiTienda.Controllers
         }
 
         
-        public IHttpActionResult Get(int id, string dato)
+        //public IHttpActionResult Gets(int id)
+        //{
+        //    try
+        //    {
+        //        List<Articulo> result = ArticuloBLL.Get_id(id);
+        //        if (result == null)
+        //        {
+        //            return NotFound();
+        //        }
+        //        return Content(HttpStatusCode.OK, result);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Content(HttpStatusCode.BadRequest, ex);
+        //    }
+        //}
+        public IHttpActionResult GetL(int id,string criterio)
         {
             try
             {
-                List<Articulo> result = ArticuloBLL.Get_id(id);
+                List<Articulo> result = ArticuloBLL.Get_id_Login(id,criterio);
                 if (result == null)
                 {
                     return NotFound();
@@ -67,11 +83,11 @@ namespace ApiTienda.Controllers
             }
         }
 
-        public IHttpActionResult ListId(int id)
+        public IHttpActionResult ListId(int id,string criterio)
         {
             try
             {
-                List<Articulo> result = ArticuloBLL.Get_id(id);
+                List<Articulo> result = ArticuloBLL.Get_id(id,criterio);
                 if (result == null)
                 {
                     return NotFound();

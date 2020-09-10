@@ -28,11 +28,15 @@ namespace BEUBIO
         public string detalle { get; set; }
         public string estado { get; set; }
         public Nullable<int> idUsuario { get; set; }
-        public Nullable<System.DateTime> fecha_ingreso { get; set; }
+        public Nullable<System.DateTime> fecha { get; set; }
+        public string nombreImagen { get; set; }
         public byte[] imagen { get; set; }
-        public virtual Usuario Usuario { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public Nullable<int> cantidad { get; set; }
         [JsonIgnore]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Negocio> Negocios { get; set; }
+        
+       
+        public virtual Usuario Usuario { get; set; }
     }
 }

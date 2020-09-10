@@ -15,17 +15,17 @@ using BEUBIO.Transaction;
 
 namespace ApiTienda.Controllers
 {
-    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
 
     public class VentaController : ApiController
     {
 
         // GET: api/Venta
-        public IHttpActionResult GetVentas()
+        public IHttpActionResult GetVentas(int id)
         {
             try
             {
-                List<Venta> todos = VentaBLL.GetList();
+                List<Venta> todos = VentaBLL.GetList(id);
                 return Content(HttpStatusCode.OK, todos);
             }
             catch (Exception ex)
@@ -54,7 +54,7 @@ namespace ApiTienda.Controllers
         }
 
         [ResponseType(typeof(Venta))]
-        public IHttpActionResult GetUltimaVenta(string dato, string edato)
+        public IHttpActionResult GetUltimaVenta()
         {
             try
             {

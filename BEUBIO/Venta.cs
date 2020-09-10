@@ -14,13 +14,19 @@ namespace BEUBIO
     
     public partial class Venta
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Venta()
+        {
+            this.Negocios = new HashSet<Negocio>();
+        }
+    
         public int idVenta { get; set; }
         public Nullable<System.DateTime> fechaVenta { get; set; }
         public Nullable<int> idUsuario { get; set; }
-        public Nullable<int> idNegocio { get; set; }
         public Nullable<decimal> total { get; set; }
     
-        public virtual Negocio Negocio { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Negocio> Negocios { get; set; }
         public virtual Usuario Usuario { get; set; }
     }
 }

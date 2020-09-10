@@ -4,8 +4,10 @@
     <EntitySetMapping Name="Articuloes">
       <EntityTypeMapping TypeName="Modelo_Bio.Articulo">
         <MappingFragment StoreEntitySet="Articulo">
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
           <ScalarProperty Name="imagen" ColumnName="imagen" />
-          <ScalarProperty Name="fecha_ingreso" ColumnName="fecha_ingreso" />
+          <ScalarProperty Name="nombreImagen" ColumnName="nombreImagen" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
           <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
           <ScalarProperty Name="estado" ColumnName="estado" />
           <ScalarProperty Name="detalle" ColumnName="detalle" />
@@ -19,7 +21,9 @@
     <EntitySetMapping Name="Negocios">
       <EntityTypeMapping TypeName="Modelo_Bio.Negocio">
         <MappingFragment StoreEntitySet="Negocio">
-          <ScalarProperty Name="idAriculo" ColumnName="idAriculo" />
+          <ScalarProperty Name="idVenta" ColumnName="idVenta" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="idArticulo" ColumnName="idArticulo" />
           <ScalarProperty Name="subtotal" ColumnName="subtotal" />
           <ScalarProperty Name="precio" ColumnName="precio" />
           <ScalarProperty Name="cantidad" ColumnName="cantidad" />
@@ -27,10 +31,21 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Ventas">
+      <EntityTypeMapping TypeName="Modelo_Bio.Venta">
+        <MappingFragment StoreEntitySet="Venta">
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="fechaVenta" ColumnName="fechaVenta" />
+          <ScalarProperty Name="idVenta" ColumnName="idVenta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Usuarios">
       <EntityTypeMapping TypeName="Modelo_Bio.Usuario">
         <MappingFragment StoreEntitySet="Usuario">
           <ScalarProperty Name="token_temp" ColumnName="token_temp" />
+          <ScalarProperty Name="saldoDisponible" ColumnName="saldoDisponible" />
           <ScalarProperty Name="vistamaps" ColumnName="vistamaps" />
           <ScalarProperty Name="ubicacionmaps" ColumnName="ubicacionmaps" />
           <ScalarProperty Name="contrasena" ColumnName="contrasena" />
@@ -41,17 +56,6 @@
           <ScalarProperty Name="apellidos" ColumnName="apellidos" />
           <ScalarProperty Name="nombres" ColumnName="nombres" />
           <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Ventas">
-      <EntityTypeMapping TypeName="Modelo_Bio.Venta">
-        <MappingFragment StoreEntitySet="Venta">
-          <ScalarProperty Name="total" ColumnName="total" />
-          <ScalarProperty Name="idNegocio" ColumnName="idNegocio" />
-          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
-          <ScalarProperty Name="fechaVenta" ColumnName="fechaVenta" />
-          <ScalarProperty Name="idVenta" ColumnName="idVenta" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
